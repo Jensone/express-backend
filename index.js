@@ -37,6 +37,10 @@ pages.forEach((page) => {
   });
 });
 
+app.post("/contact", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "contact-success.html"));
+});
+
 app.listen(port, () => {
   console.log(
     `Le serveur est lancé à l'adresse suivante : http://localhost:${port}`,
