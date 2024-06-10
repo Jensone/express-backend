@@ -1,11 +1,39 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const port = 3000;
 
-app.get("/", (req, res) => {
-  res.send({
-    message:
-      "Je suis un message JSON envoyé par un serveur Express, c'est ouf!",
+const pages = [
+  {
+    name: "Home",
+    path: "/",
+    template: "index.html",
+  },
+  {
+    name: "About",
+    path: "/about",
+    template: "about.html",
+  },
+  {
+    name: "Services",
+    path: "/services",
+    template: "services.html",
+  },
+  {
+    name: "Products",
+    path: "/products",
+    template: "products.html",
+  },
+  {
+    name: "Contact",
+    path: "/contact",
+    template: "contact.html",
+  },
+];
+
+pages.forEach((page) => {
+  app.get(page.path, (req, res) => {
+    res.sendFile(path.join(__dirname, "public", page.template));
   });
 });
 
